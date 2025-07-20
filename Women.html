@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Nữ - adidas-website</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- ===== BẮT ĐẦU MODAL XÁC NHẬN THÊM VÀO GIỎ HÀNG ===== -->
+<div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addedToCartModalLabel"><i class="fas fa-check-circle text-success"></i> Đã thêm vào giỏ hàng!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+              <img id="modal-product-image" src="" alt="Sản phẩm" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px;">
+              <div>
+                  <h6 id="modal-product-name" style="font-size: 1.1rem; font-weight: bold;">Tên sản phẩm</h6>
+                  <p id="modal-product-price" class="mb-0" style="font-size: 1rem; color: #555;">Giá</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+          <a href="Cart.html" class="btn btn-dark">Xem giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== KẾT THÚC MODAL ===== -->
+  
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/cart.js"></script>
+  </body>
+    <!-- Navbar phiên bản mới nhất -->
+<!-- ===== BẮT ĐẦU HEADER CHUẨN (PHIÊN BẢN TÌM KIẾM HOÀN CHỈNH) ===== -->
+<nav class="navbar navbar-expand-md bg-body sticky-top" style="height: 120px;">
+    <div class="container-fluid">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <a href="index.html"><img src="assets/img/Logo.jpg" width="200" height="140" style="height: 140px;"></a>
+        <div class="collapse navbar-collapse" id="navcol-1" style="width: 592px;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html" style="font-size: 30px;width: 160px;">Trang chủ</a></li>
+                <li class="nav-item" style="width: 102px;"><a class="nav-link" href="Shoes.html" style="font-size: 30px;width: 78px;text-align: left;margin: 0px;min-width: 0px;margin-left: 20px;color: var(--bs-dark);">Giày</a></li>
+                <li class="nav-item" style="width: 120px;"><a class="nav-link" style="font-size: 30px;width: 78px;margin-left: 20px;padding-left: 0px;padding-right: 0px;color: var(--bs-dark);" href="Man.html">Nam</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Women.html" style="font-size: 30px;width: 78px;color: var(--bs-dark);">Nữ</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Contact.html" style="font-size: 30px;width: 135px;margin-right: 0px;margin-left: -78px;color: var(--bs-black);">Liên Hệ</a></li>
+            </ul>
+        </div>
+        
+        <!-- ===== FORM TÌM KIẾM ĐÃ CẬP NHẬT ===== -->
+        <form class="d-flex align-items-center" id="header-search-form">
+            <input class="form-control" type="search" style="width: 240px;" placeholder="Tìm kiếm sản phẩm...">
+            
+            <!-- THAY ĐỔI: Thẻ <a> đã được đổi thành <button type="submit"> -->
+            <button type="submit" class="btn" style="padding: 0 10px;">
+                <i class="fas fa-search" style="font-size: 35px;color: var(--bs-dark);"></i>
+            </button>
+            
+            <a href="Login.html" style="margin: 0 10px;font-size: 16px;"><i class="fas fa-user" style="font-size: 36px;color: var(--bs-dark);"></i></a>
+            <a href="Cart.html" style="margin: 0 10px;font-size: 16px; position: relative;">
+                <i class="fas fa-shopping-cart" style="font-size: 36px;color: var(--bs-dark);"></i>
+                <span id="cart-item-count" class="badge rounded-pill bg-danger" style="position: absolute; top: -5px; right: -10px; font-size: 0.75em;">0</span>
+            </a>
+        </form>
+        <!-- ==================================== -->
+    </div>
+</nav>
+<!-- ===== KẾT THÚC HEADER CHUẨN ===== -->
+    
+    <h1 style="text-align: center;padding-top: 7px;background: #5E4633;color: var(--bs-light);padding-bottom: 7px;margin-top: 20px;">SHOP ALL WOMEN’S PRODUCTS</h1>
+    <div>
+        <h1>    Back<i class="fas fa-long-arrow-alt-left" style="margin-left: -124px;"></i></h1>
+        <p style="font-size: 30px;"><strong>BỘ SƯU TẬP NỮ ADIDAS</strong></p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col pt-3">
+                <div style="position: relative;"><img class="img-fluid" width="170" height="242" src="assets/img/h26.jpg" style="width: 415px;height: 550px;">
+                    <h1 style="position: absolute;font-size: 30px;margin-top: -215px;background: var(--bs-light);width: 132px;height: 43px;text-align: center;margin-right: 0px;margin-left: 12px;">ADIZERO<br><br></h1>
+                    <p style="position: absolute;font-size: 13px;margin-right: 0px;margin-top: -160px;background: var(--bs-light);width: 160px;margin-left: 12px;">ADIZERO BOSTON 13</p>
+                    <p style="position: absolute;font-size: 14px;margin-right: 0px;margin-top: -127px;background: var(--bs-light);margin-left: 12px;">Dành để tập chạy chuẩn bị cho ngày thi đấu</p>
+                    <!-- THÊM GIÁ VÀO ĐÂY -->
+                    <h5 style="display:none;">3200000</h5>
+                    <!-- THÊM CLASS VÀ CURSOR -->
+                    <h2 class="add-to-cart-btn" style="position: absolute;margin-top: -48px;background: var(--bs-light-bg-subtle);text-align: center;margin-right: 0px;margin-left: 93px; cursor:pointer;">Mua ngay <i class="fas fa-long-arrow-alt-right"></i></h2>
+                </div>
+            </div>
+            <div class="col"><img class="img-fluid pt-3" width="587" height="706" src="assets/img/h24.jpg" style="width: 415px;height: 567px;"></div>
+            <div class="col"><img class="img-fluid pt-3" width="575" height="683" src="assets/img/h25.jpg" style="width: 415px;height: 567px;"></div>
+        </div>
+    </div>
+    <div style="background: #D99B6A;">
+        <div class="row" style="margin-top: 45px;">
+            <div class="col" style="padding-left: 55px;margin-top: 28px;margin-bottom: 28px;">
+                <div><img class="img-fluid d-flex pt-0" width="345" height="412" src="assets/img/h27.jpg" style="width: 375px;height: 470px;margin-right: 0px;border-width: 0px;border-color: var(--bs-warning-bg-subtle);border-radius: 0px;">
+                    <h5 style="font-size: 18px;color: var(--bs-light);">CLOT Stan Smith Collection<br>Câu lạc bộ đang mở cửa dành cho những ai đang viết lại luật chơi</h5>
+                    <p class="underline-text" style="background: #D99B6A;color: var(--bs-light);">Sắp có</p>
+                </div>
+            </div>
+            <div class="col" style="margin-top: 28px;margin-bottom: 28px;">
+                <div><img class="img-fluid d-flex" width="280" height="462" src="assets/img/h28.jpg" style="width: 375px;height: 470px;margin-right: 0px;">
+                    <h5 style="font-size: 18px;color: var(--bs-light);">Tinh thần đồng đội<br>ADIDAS Z.N.E kết nối tới cuộc sống của bạn</h5>
+                    <!-- THÊM GIÁ VÀ CLASS VÀO ĐÂY (Nút "Sắp có" sẽ không có class) -->
+                    <h5 style="display:none;">1850000</h5>
+                    <p class="underline-text add-to-cart-btn" style="background: #D99B6A;color: var(--bs-light);padding-top: 0px;margin-top: 20px; cursor:pointer;">Mua ngay</p>
+                </div>
+            </div>
+            <div class="col" style="margin-top: 28px;margin-bottom: 28px;">
+                <div><img class="img-fluid d-flex" width="327" height="452" src="assets/img/h29.jpg" style="width: 375px;height: 470px;margin-right: 0px;">
+                    <h5 style="font-size: 18px;color: var(--bs-light);">Sống trong Soft Lux<br>Vẻ ngoài thư thái cảm thấy sang trọng</h5>
+                    <p class="underline-text" style="background: #D99B6A;color: var(--bs-light);margin-top: 20px;">Sắp có</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 style="text-align: center;margin-top: 20px;margin-bottom: 20px;">PRODUCT</h1>
+    <div style="background: #D99B6A;">
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item" style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;margin-right: 12px;"><span style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;margin-right: 12px;">Ba lê </span></li>
+            <li class="list-group-item" style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;margin-right: 12px;"><span style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;margin-right: 12px;">Samba</span></li>
+            <li class="list-group-item" style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;"><span style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 12px;margin-right: 12px;">Originals</span></li>
+            <li class="list-group-item" style="background: #BFD8B8;margin-top: 12px;margin-bottom: 12px;margin-left: 24px;"><span style="margin: 12px;">OPTIME</span></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div><img class="img-fluid" width="317" height="318" src="assets/img/h30.jpg" style="width: 300px;height: 360px;">
+                        <h5 style="color: var(--bs-light);">2.400.000VNĐ</h5>
+                        <p style="color: var(--bs-light);">Giày Samba Jane<br>Originals</p>
+                        <!-- THÊM CLASS VÀO ĐÂY -->
+                        <button class="btn btn-primary text-center add-to-cart-btn" type="button" style="width: 76px;font-size: 22px;height: 40px;padding-top: 1px;padding-right: 16px;margin-left: 96px;margin-bottom: 19px;background: #F7E9DD;color: var(--bs-dark);">Buy</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div><img class="img-fluid" width="322" height="302" src="assets/img/h31.jpg" style="width: 300px;height: 360px;">
+                        <h5 style="color: var(--bs-light);">2.400.000VNĐ</h5>
+                        <p style="color: var(--bs-light);">Giày Taekwondo Mei<br>Originals</p>
+                        <!-- THÊM CLASS VÀO ĐÂY -->
+                        <button class="btn btn-primary text-center add-to-cart-btn" type="button" style="width: 76px;font-size: 22px;height: 40px;padding-top: 1px;padding-right: 16px;margin-left: 96px;margin-bottom: 19px;background: #F7E9DD;color: var(--bs-dark);">Buy</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div><img class="img-fluid" width="317" height="313" src="assets/img/h32.jpg" style="width: 300px;height: 360px;">
+                        <h5 style="color: var(--bs-light);">2.400.000VNĐ</h5>
+                        <p style="color: var(--bs-light);">Giày Samba Jane<br>Originals</p>
+                        <!-- THÊM CLASS VÀO ĐÂY -->
+                        <button class="btn btn-primary text-center add-to-cart-btn" type="button" style="width: 76px;font-size: 22px;height: 40px;padding-top: 1px;padding-right: 16px;margin-left: 96px;margin-bottom: 19px;background: #F7E9DD;color: var(--bs-dark);">Buy</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div><img class="img-fluid" width="317" height="308" src="assets/img/h33.jpg" style="width: 300px;height: 360px;">
+                        <h5 style="color: var(--bs-light);">2.400.000VNĐ</h5>
+                        <p style="color: var(--bs-light);">Giày Samba Jane<br>Originals</p>
+                        <!-- THÊM CLASS VÀO ĐÂY -->
+                        <button class="btn btn-primary text-center add-to-cart-btn" type="button" style="width: 76px;font-size: 22px;height: 40px;padding-top: 1px;padding-right: 16px;margin-left: 96px;margin-bottom: 19px;background: #F7E9DD;color: var(--bs-dark);">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="width: 1053px;text-align: center;background: var(--bs-dark);font-size: 19px;margin-left: 266px;">
+        <h2 style="color: var(--bs-light);">MUA ĐỒ TẬP THỂ LỰC</h2>
+        <p style="color: var(--bs-light);font-size: 20px;">Cảm nhận sức mạnh trong trang phục che chắn. Chiếc quần legging hỗ trợ squat Optime nay có mặt với nhiều phong cách đa dạng.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"><div><img class="img-fluid" width="320" height="447" src="assets/img/h34.jpg" style="width: 300px;height: 400px;"><p style="color: var(--bs-light);font-size: 28px;">3 mặt hàng</p></div></div>
+                <div class="col-md-3"><div><img class="img-fluid" width="277" height="447" src="assets/img/h35.jpg" style="width: 300px;height: 400px;"><p style="color: var(--bs-light);font-size: 28px;">3 mặt hàng</p></div></div>
+                <div class="col-md-3"><div><img class="img-fluid" width="342" height="397" src="assets/img/h36.jpg" style="width: 300px;height: 400px;"><p style="color: var(--bs-light);font-size: 28px;">3 mặt hàng</p></div></div>
+                <div class="col-md-3"><div><img class="img-fluid" width="281" height="438" src="assets/img/h37.jpg" style="width: 300px;height: 400px;"><p style="color: var(--bs-light);font-size: 28px;">3 mặt hàng</p></div></div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <h1 style="text-align: center;">ADIDAS WOMEN’S CLOTHING & SHOES</h1>
+        <p style="font-size: 28px;text-align: justify;">Phong cách là độc nhất. Trên sân cỏ, trong phòng tập, hay ở nhà. Chúng ta là người định hình phong cách. Quần áo và giày dép adidas không tạo nên phong cách của chúng ta. Chính chúng ta mới là người tạo nên. Hãy tìm kiếm những gì đại diện cho bạn, tôn lên bạn và giúp bạn trở thành phiên bản tốt nhất của chính mình. Giày chạy bộ giúp bạn tiến xa hơn. Một đôi giày thể thao trắng cổ điển phù hợp với chiếc quần jeans yêu thích của bạn. Quần bó chống squat và áo ngực thể thao sẵn sàng vận động. Hay đơn giản là bộ đồ mặc nhà mềm mại nhất cho ngày Chủ nhật. Tất cả những gì chúng ta cần. Tất cả những gì chúng ta muốn. Hơn cả những gì chúng ta có thể mơ ước, trong trang phục và giày dép dành cho phụ nữ.</p><img style="width: 258px;height: 180px;padding-left: 0px;margin-right: 0px;margin-left: 94px;margin-bottom: 34px;margin-top: 10px;" width="258" height="180" src="assets/img/logo6.jpg">
+    </div>
+    <div class="w-100">
+        <h1 class="pt-0 pb-0" style="color: var(--bs-light);background: var(--bs-info);margin-bottom: 0px;">TRỞ THÀNH HỘI VIÊN & HƯỞNG ƯU ĐÃI 15%<button class="btn btn-primary" type="button" style="width: 265px;height: 54px;margin: -1px;margin-right: 0px;margin-left: 55px;font-size: 22px;color: var(--bs-dark);background: var(--bs-light);margin-bottom: 3px;">ĐĂNG KÝ MIỄN PHÍ  <i class="fas fa-long-arrow-alt-right" style="font-size: 20px;"></i></button></h1>
+    </div>
+    <footer class="mt-0 pt-0" style="background: var(--bs-dark);margin-top: 0px;margin-bottom: 18px;height: 285px;padding-top: 0px;padding-bottom: 0px;">
+        <div class="row">
+            <div class="col">
+                <h4 style="color: var(--bs-light);">SẢN PHẨM</h4>
+                <p style="color: var(--bs-light);">Giày<br>Quần áo<br>Phụ kiện<br>Hàng Mới Về<br>Release Dates<br>Top Sellers<br>Member exclusives<br>Outlet</p>
+            </div>
+            <div class="col">
+                <h4 style="color: var(--bs-light);">THỂ THAO</h4>
+                <p style="color: var(--bs-light);">Chạy<br>Đánh gôn<br>Gym & Training<br>Bóng đá<br>Bóng Rổ<br>Quần vợt<br>Ngoai troi<br>Bơi lội<br>Motorsport</p>
+            </div>
+            <div class="col">
+                <h4 style="color: var(--bs-light);">BỘ SƯU TẬP</h4>
+                <p style="color: var(--bs-light);">Pharrell Williams<br>Ultra Boost<br>Pureboost<br>Predator<br>Superstar<br>Stan Smith<br>NMD<br>Adicolor</p>
+            </div>
+            <div class="col">
+                <h4 style="color: var(--bs-light);">THÔNG TIN VỀ CÔNG TY</h4>
+                <p style="color: var(--bs-light);">Giới Thiệu Về Chúng Tôi<br>Cơ Hội Nghề Nghiệp<br>Tin tức<br>Adidas stories</p>
+            </div>
+            <div class="col">
+                <h4 style="color: var(--bs-light);">HỖ TRỢ</h4>
+                <p style="color: var(--bs-light);">Trợ Giúp<br>Công cụ tìm kiếm cửa hàng<br>Biểu Đồ Kích Cỡ<br>Thanh toán<br>Giao hàng<br>Trả Hàng & Hoàn Tiền<br>khuyến mãi<br>Trợ Giúp Dịch Vụ Khách Hàng</p>
+            </div>
+        </div>
+        <div style="background: var(--bs-dark);">
+            <h1 style="background: var(--bs-dark);color: var(--bs-light);text-align: center;">THEO DÕI CHÚNG TÔI<br><br><i class="fab fa-facebook-square" style="width: 164px;font-size: 70px;"></i><i class="fab fa-instagram" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitter" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitch" style="width: 164px;font-size: 70px;"></i></h1>
+        </div>
+    </footer>
+    <!-- Modal và Scripts -->
+    <!-- ===== BẮT ĐẦU MODAL XÁC NHẬN THÊM VÀO GIỎ HÀNG ===== -->
+<div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addedToCartModalLabel"><i class="fas fa-check-circle text-success me-2"></i> Đã thêm vào giỏ hàng!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+              <img id="modal-product-image" src="" alt="Sản phẩm" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 8px;">
+              <div>
+                  <h6 id="modal-product-name" style="font-size: 1.1rem; font-weight: bold;">Tên sản phẩm</h6>
+                  <p id="modal-product-price" class="mb-0" style="font-size: 1rem; color: #555;">Giá</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+          <a href="Cart.html" class="btn btn-dark">Xem giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== KẾT THÚC MODAL ===== -->
+    <!-- Toast Notification Element -->
+    <div id="toast-notification"></div>
+
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/product-data.js"></script>
+</body>
+
+</html>

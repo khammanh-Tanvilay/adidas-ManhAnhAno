@@ -1,0 +1,52 @@
+.black-box {
+  color: white;
+  text-align: center;
+}
+
+.black-box {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+.underline-text {
+  border-bottom: 2px solid var(--bs-body-bg);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.content-box {
+  width: 320px;
+  height: 240px;
+}
+
+.underline-text-nam {
+  border-bottom: 2px solid black;
+  display: inline-block;
+  padding-bottom: 5px;;
+}
+
+hr {
+  border-top: 5px solid black;
+}
+
+/* Toast Notification Styling */
+
+
+/* Class để hiển thị toast */
+
+/* --- Sticky Header Fix --- */
+
+body {
+    /* Thêm một khoảng đệm ở trên cùng, bằng với chiều cao của header */
+    padding-top: 120px; 
+}
+
+.sticky-top {
+    /* Thêm một đường viền mỏng bên dưới để tạo sự tách biệt khi cuộn */
+    border-bottom: 1px solid #e7e7e7;
+    background-color: white !important; /* Đảm bảo header luôn có nền trắng */
+}
+
+/* --- End Sticky Header Fix --- */

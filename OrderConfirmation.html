@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Đặt hàng thành công - adidas-website</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+<!-- ===== BẮT ĐẦU HEADER CHUẨN (PHIÊN BẢN TÌM KIẾM HOÀN CHỈNH) ===== -->
+<nav class="navbar navbar-expand-md bg-body sticky-top" style="height: 120px;">
+    <div class="container-fluid">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <a href="index.html"><img src="assets/img/Logo.jpg" width="200" height="140" style="height: 140px;"></a>
+        <div class="collapse navbar-collapse" id="navcol-1" style="width: 592px;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html" style="font-size: 30px;width: 160px;">Trang chủ</a></li>
+                <li class="nav-item" style="width: 102px;"><a class="nav-link" href="Shoes.html" style="font-size: 30px;width: 78px;text-align: left;margin: 0px;min-width: 0px;margin-left: 20px;color: var(--bs-dark);">Giày</a></li>
+                <li class="nav-item" style="width: 120px;"><a class="nav-link" style="font-size: 30px;width: 78px;margin-left: 20px;padding-left: 0px;padding-right: 0px;color: var(--bs-dark);" href="Man.html">Nam</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Women.html" style="font-size: 30px;width: 78px;color: var(--bs-dark);">Nữ</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Contact.html" style="font-size: 30px;width: 135px;margin-right: 0px;margin-left: -78px;color: var(--bs-black);">Liên Hệ</a></li>
+            </ul>
+        </div>
+        
+        <!-- ===== FORM TÌM KIẾM ĐÃ CẬP NHẬT ===== -->
+        <form class="d-flex align-items-center" id="header-search-form">
+            <input class="form-control" type="search" style="width: 240px;" placeholder="Tìm kiếm sản phẩm...">
+            
+            <!-- THAY ĐỔI: Thẻ <a> đã được đổi thành <button type="submit"> -->
+            <button type="submit" class="btn" style="padding: 0 10px;">
+                <i class="fas fa-search" style="font-size: 35px;color: var(--bs-dark);"></i>
+            </button>
+            
+            <a href="Login.html" style="margin: 0 10px;font-size: 16px;"><i class="fas fa-user" style="font-size: 36px;color: var(--bs-dark);"></i></a>
+            <a href="Cart.html" style="margin: 0 10px;font-size: 16px; position: relative;">
+                <i class="fas fa-shopping-cart" style="font-size: 36px;color: var(--bs-dark);"></i>
+                <span id="cart-item-count" class="badge rounded-pill bg-danger" style="position: absolute; top: -5px; right: -10px; font-size: 0.75em;">0</span>
+            </a>
+        </form>
+        <!-- ==================================== -->
+    </div>
+</nav>
+<!-- ===== KẾT THÚC HEADER CHUẨN ===== -->
+    
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <i class="fas fa-check-circle" style="font-size: 80px; color: green; margin-bottom: 20px;"></i>
+                <h1>Cảm ơn bạn đã mua hàng!</h1>
+                <p class="lead" style="font-size: 1.5rem;">Đơn hàng của bạn đã được đặt thành công.</p>
+                
+                <!-- Khu vực hiển thị chi tiết đơn hàng (đã được thiết kế lại) -->
+                <div id="orderDetails" class="card p-4 mt-4 text-start">
+                    <div class="text-center">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Đang tải chi tiết đơn hàng...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <button id="downloadInvoiceBtn" class="btn btn-success me-2"><i class="fas fa-download me-2"></i> Tải Hóa Đơn (PDF)</button>
+                    <a href="index.html" class="btn btn-dark">Tiếp tục mua sắm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER CHUẨN ===== -->
+    <div style="background: var(--bs-dark);margin-top: 46px;">
+        <!-- ... (Nội dung footer giữ nguyên) ... -->
+    </div>
+
+    <!-- Modal (giữ nguyên) -->
+    <div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+        <!-- ... (Nội dung modal giữ nguyên) ... -->
+    </div>
+    
+    <!-- Nhúng thư viện jsPDF và các script khác -->
+    <script src="assets/lib/jspdf.umd.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/cart.js"></script>
+    
+    <!-- ===== SCRIPT TRANG XÁC NHẬN (ĐÃ NÂNG CẤP) ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderDataString = sessionStorage.getItem('latestOrder');
+            const orderDetailsContainer = document.getElementById('orderDetails');
+            const downloadBtn = document.getElementById('downloadInvoiceBtn');
+
+            updateCartIcon(); // Cập nhật icon giỏ hàng về 0
+
+            if (!orderDataString || !orderDetailsContainer || !downloadBtn) {
+                if(orderDetailsContainer) orderDetailsContainer.innerHTML = '<p class="text-danger">Không tìm thấy thông tin đơn hàng.</p>';
+                if(downloadBtn) downloadBtn.style.display = 'none';
+                return;
+            }
+
+            const order = JSON.parse(orderDataString);
+            const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+
+            // ---- BẮT ĐẦU PHẦN HIỂN THỊ CHI TIẾT ----
+            let detailsHTML = `
+                <h3 class="mb-3 text-center">Chi tiết đơn hàng</h3>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p class="mb-1"><strong>Mã đơn hàng:</strong> ${order.orderId}</p>
+                        <p class="mb-1"><strong>Ngày đặt:</strong> ${order.orderDate}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-1"><strong>Khách hàng:</strong> ${order.customer.name}</p>
+                        <p class="mb-1"><strong>Giao đến:</strong> ${order.customer.address}</p>
+                    </div>
+                </div>
+                <hr>
+                <h5 class="mb-3">Các sản phẩm đã đặt:</h5>
+            `;
+
+            // Vòng lặp để liệt kê từng sản phẩm
+            order.items.forEach(item => {
+                detailsHTML += `
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="${item.image}" alt="${item.name}" style="width: 65px; height: 65px; object-fit: cover; border-radius: 8px; margin-right: 15px;">
+                        <div class="flex-grow-1">
+                            <span class="fw-bold d-block">${item.name}</span>
+                            <span class="text-muted">Số lượng: ${item.quantity}</span>
+                        </div>
+                        <span class="fw-bold">${formatPrice(item.price * item.quantity)}</span>
+                    </div>
+                `;
+            });
+
+            detailsHTML += `
+                <hr>
+                <div class="d-flex justify-content-end fs-5">
+                    <strong class="me-3">Tổng cộng:</strong>
+                    <strong class="text-success">${formatPrice(order.total)}</strong>
+                </div>
+            `;
+            // ---- KẾT THÚC PHẦN HIỂN THỊ CHI TIẾT ----
+
+            orderDetailsContainer.innerHTML = detailsHTML;
+            
+            downloadBtn.onclick = () => {
+                generateInvoice(order);
+            };
+        });
+
+        function generateInvoice(order) {
+            // ... (Hàm generateInvoice giữ nguyên như cũ)
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            const formatPrice = (price) => new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+
+            doc.setFont('helvetica', 'bold');
+            doc.text("HOA DON THANH TOAN", 105, 20, null, null, "center");
+            
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.text(`Ma Don Hang: ${order.orderId}`, 14, 40);
+            doc.text(`Ngay Dat: ${order.orderDate}`, 14, 48);
+            doc.text(`Khach Hang: ${order.customer.name}`, 14, 56);
+            doc.text(`Dia Chi: ${order.customer.address}`, 14, 64);
+            
+            let y = 80;
+            doc.setFont('helvetica', 'bold');
+            doc.text("San Pham", 14, y);
+            doc.text("So Luong", 120, y);
+            doc.text("Thanh Tien", 170, y);
+            doc.line(14, y + 2, 196, y + 2);
+            
+            y += 10;
+            doc.setFont('helvetica', 'normal');
+            order.items.forEach(item => {
+                const itemNameNoDiacritics = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                doc.text(itemNameNoDiacritics, 14, y);
+                doc.text(item.quantity.toString(), 125, y);
+                doc.text(formatPrice(item.price * item.quantity), 170, y);
+                y += 8;
+            });
+            
+            doc.line(14, y, 196, y);
+            y += 10;
+
+            doc.setFont('helvetica', 'bold');
+            doc.text("Tong Cong:", 120, y);
+            doc.text(formatPrice(order.total), 170, y);
+
+            doc.setFontSize(10);
+            doc.text("Cam on quy khach da mua hang!", 105, y + 20, null, null, "center");
+
+            doc.save(`HoaDon_${order.orderId}.pdf`);
+        }
+    </script>
+        <div class="w-100">
+            <h1 class="pt-0 pb-0" style="color: var(--bs-light);background: var(--bs-info);margin-top: 34px;margin-bottom: 0px;">TRỞ THÀNH HỘI VIÊN &amp; HƯỞNG ƯU ĐÃI 15%<button class="btn btn-primary" type="button" style="width: 265px;height: 54px;margin: -1px;margin-right: 0px;margin-left: 55px;font-size: 22px;color: var(--bs-dark);background: var(--bs-light);margin-bottom: 3px;">ĐĂNG KÝ MIỄN PHÍ&nbsp;&nbsp;<i class="fas fa-long-arrow-alt-right" style="font-size: 20px;"></i></button></h1>
+        </div>
+        <footer class="mt-0 pt-0" style="background: var(--bs-dark);margin-top: 0px;margin-bottom: 18px;height: 275px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="row">
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">SẢN PHẨM</h4>
+                    <p style="color: var(--bs-light);">Giày<br>Quần áo<br>Phụ kiện<br>Hàng Mới Về<br>Release Dates<br>Top Sellers<br>Member exclusives<br>Outlet</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">THỂ THAO</h4>
+                    <p style="color: var(--bs-light);">Chạy<br>Đánh gôn<br>Gym &amp; Training<br>Bóng đá<br>Bóng Rổ<br>Quần vợt<br>Ngoai troi<br>Bơi lội<br>Motorsport</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">BỘ SƯU TẬP</h4>
+                    <p style="color: var(--bs-light);">Pharrell Williams<br>Ultra Boost<br>Pureboost<br>Predator<br>Superstar<br>Stan Smith<br>NMD<br>Adicolor</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">THÔNG TIN VỀ CÔNG TY</h4>
+                    <p style="color: var(--bs-light);">Giới Thiệu Về Chúng Tôi<br>Cơ Hội Nghề Nghiệp<br>Tin tức<br>Adidas stories</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">HỖ TRỢ</h4>
+                    <p style="color: var(--bs-light);">Trợ Giúp<br>Công cụ tìm kiếm cửa hàng<br>Biểu Đồ Kích Cỡ<br>Thanh toán<br>Giao hàng<br>Trả Hàng &amp; Hoàn Tiền<br>khuyến mãi<br>Trợ Giúp Dịch Vụ Khách Hàng</p>
+                </div>
+            </div>
+            <div style="background: var(--bs-dark);">
+                <h1 style="background: var(--bs-dark);color: var(--bs-light);text-align: center;">THEO DÕI CHÚNG TÔI<br><br><i class="fab fa-facebook-square" style="width: 164px;font-size: 70px;"></i><i class="fab fa-instagram" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitter" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitch" style="width: 164px;font-size: 70px;"></i></h1>
+            </div>
+        </footer>
+            <!-- Modal và Scripts -->
+    <!-- ===== BẮT ĐẦU MODAL XÁC NHẬN THÊM VÀO GIỎ HÀNG ===== -->
+<div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addedToCartModalLabel"><i class="fas fa-check-circle text-success me-2"></i> Đã thêm vào giỏ hàng!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+              <img id="modal-product-image" src="" alt="Sản phẩm" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 8px;">
+              <div>
+                  <h6 id="modal-product-name" style="font-size: 1.1rem; font-weight: bold;">Tên sản phẩm</h6>
+                  <p id="modal-product-price" class="mb-0" style="font-size: 1rem; color: #555;">Giá</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+          <a href="Cart.html" class="btn btn-dark">Xem giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== KẾT THÚC MODAL ===== -->
+</body>
+
+</html>

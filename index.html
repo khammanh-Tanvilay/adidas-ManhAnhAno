@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>adidas-website</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- ===== BẮT ĐẦU MODAL XÁC NHẬN THÊM VÀO GIỎ HÀNG ===== -->
+<div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addedToCartModalLabel"><i class="fas fa-check-circle text-success"></i> Đã thêm vào giỏ hàng!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+              <img id="modal-product-image" src="" alt="Sản phẩm" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px;">
+              <div>
+                  <h6 id="modal-product-name" style="font-size: 1.1rem; font-weight: bold;">Tên sản phẩm</h6>
+                  <p id="modal-product-price" class="mb-0" style="font-size: 1rem; color: #555;">Giá</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+          <a href="Cart.html" class="btn btn-dark">Xem giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== KẾT THÚC MODAL ===== -->
+  
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/cart.js"></script>
+  </body>
+<!-- ===== BẮT ĐẦU HEADER CHUẨN (PHIÊN BẢN TÌM KIẾM HOÀN CHỈNH) ===== -->
+<nav class="navbar navbar-expand-md bg-body sticky-top" style="height: 120px;">
+    <div class="container-fluid">
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <a href="index.html"><img src="assets/img/Logo.jpg" width="200" height="140" style="height: 140px;"></a>
+        <div class="collapse navbar-collapse" id="navcol-1" style="width: 592px;">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.html" style="font-size: 30px;width: 160px;">Trang chủ</a></li>
+                <li class="nav-item" style="width: 102px;"><a class="nav-link" href="Shoes.html" style="font-size: 30px;width: 78px;text-align: left;margin: 0px;min-width: 0px;margin-left: 20px;color: var(--bs-dark);">Giày</a></li>
+                <li class="nav-item" style="width: 120px;"><a class="nav-link" style="font-size: 30px;width: 78px;margin-left: 20px;padding-left: 0px;padding-right: 0px;color: var(--bs-dark);" href="Man.html">Nam</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Women.html" style="font-size: 30px;width: 78px;color: var(--bs-dark);">Nữ</a></li>
+                <li class="nav-item" style="width: 160px;"><a class="nav-link" href="Contact.html" style="font-size: 30px;width: 135px;margin-right: 0px;margin-left: -78px;color: var(--bs-black);">Liên Hệ</a></li>
+            </ul>
+        </div>
+        
+        <!-- ===== FORM TÌM KIẾM ĐÃ CẬP NHẬT ===== -->
+        <form class="d-flex align-items-center" id="header-search-form">
+            <input class="form-control" type="search" style="width: 240px;" placeholder="Tìm kiếm sản phẩm...">
+            
+            <!-- THAY ĐỔI: Thẻ <a> đã được đổi thành <button type="submit"> -->
+            <button type="submit" class="btn" style="padding: 0 10px;">
+                <i class="fas fa-search" style="font-size: 35px;color: var(--bs-dark);"></i>
+            </button>
+            
+            <a href="Login.html" style="margin: 0 10px;font-size: 16px;"><i class="fas fa-user" style="font-size: 36px;color: var(--bs-dark);"></i></a>
+            <a href="Cart.html" style="margin: 0 10px;font-size: 16px; position: relative;">
+                <i class="fas fa-shopping-cart" style="font-size: 36px;color: var(--bs-dark);"></i>
+                <span id="cart-item-count" class="badge rounded-pill bg-danger" style="position: absolute; top: -5px; right: -10px; font-size: 0.75em;">0</span>
+            </a>
+        </form>
+        <!-- ==================================== -->
+    </div>
+</nav>
+<!-- ===== KẾT THÚC HEADER CHUẨN ===== -->
+    <div class="container">
+        <div class="row">
+            <div class="col pt-3">
+                <div style="position: relative;"><img class="img-fluid" width="520" height="501" src="assets/img/h1.jpg" style="width: 415px;height: 550px;">
+                    <h1 style="position: absolute;font-size: 30px;margin-top: -146px;background: var(--bs-light);">LOW PROFILE IN DESIGN</h1>
+                    <p style="position: absolute;font-size: 13px;margin-right: 0px;margin-top: -103px;background: var(--bs-light);">Khai phá nền văn hóa mới từ dòng chảy thể thao. Phong</p>
+                    <p style="position: absolute;font-size: 14px;margin-right: 0px;margin-top: -73px;background: var(--bs-light);">cách cổ điển. Tinh thần tiên phong.</p>
+                    <h5 style="display:none;">1500000</h5>
+                    <h2 class="add-to-cart-btn" style="position: absolute;margin-top: -48px;background: var(--bs-light-bg-subtle);text-align: center;margin-right: 0px;margin-left: 93px; cursor: pointer;">Mua ngay <i class="fas fa-long-arrow-alt-right"></i></h2>
+                </div>
+            </div>
+            <div class="col"><img class="img-fluid pt-3" width="542" height="721" src="assets/img/h2.jpg" style="width: 415px;height: 567px;"></div>
+            <div class="col"><img class="img-fluid pt-3" width="530" height="636" src="assets/img/h3.jpg" style="width: 415px;height: 567px;"></div>
+        </div>
+    </div>
+    <h2 style="text-align: center;"><br>CLICK & SHOP YOUR CLUB'S KITS</h2>
+    <div class="container" style="text-align: center;"><img class="img-fluid" width="750" height="750" src="assets/img/logo1.jpg" style="width: 100px;height: 100px;margin: 10px;"><img src="assets/img/logo2.jpg" style="width: 120px;height: 120px;margin: 10px;" width="100" height="120"><img class="img-fluid" width="197" height="197" src="assets/img/logo3.jpg" style="width: 100px;height: 100px;margin: 10px;"><img class="img-fluid" width="203" height="216" src="assets/img/logo4.jpg" style="width: 100px;height: 100px;margin: 10px;"><img class="img-fluid" width="188" height="172" src="assets/img/logo5.jpg" style="width: 100px;height: 100px;margin: 10px;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="position: relative;">
+                <div style="position: relative;"><img class="img-fluid" width="406" height="517" src="assets/img/h4.jpg" style="position: relative;width: 320px;height: 570px;">
+                    <h4 class="position-absolute top-50" style="font-size: 20px;position: absolute;color: var(--bs-light);margin-top: 250px;margin-bottom: 0px;"> Man Utd 25/26 Home Kit</h4>
+                    <h5 style="display:none;">2500000</h5>
+                </div>
+                <div class="black-box">
+                    <h2 class="underline-text add-to-cart-btn" style="cursor: pointer;">Mua ngay</h2>
+                </div>
+            </div>
+            <div class="col">
+                <div style="position: relative;"><img class="img-fluid" width="407" height="542" src="assets/img/h5.jpg" style="position: relative;width: 320px;height: 570px;">
+                    <h4 class="position-absolute top-50" style="font-size: 20px;position: absolute;color: var(--bs-light);margin-top: 250px;margin-bottom: 0px;"> FC Bayern 25/26 Home Kit<br><br></h4>
+                    <h5 style="display:none;">2500000</h5>
+                </div>
+                <div class="black-box">
+                    <h2 class="underline-text add-to-cart-btn" style="cursor: pointer;">Mua ngay</h2>
+                </div>
+            </div>
+            <div class="col">
+                <div style="position: relative;"><img class="img-fluid" width="406" height="541" src="assets/img/h6.jpg" style="position: relative;width: 320px;height: 570px;">
+                    <h4 class="position-absolute top-50" style="font-size: 20px;position: absolute;color: var(--bs-light);margin-top: 250px;margin-bottom: 0px;">Real Madrid 25/26 Home Kit<br><br></h4>
+                    <h5 style="display:none;">2500000</h5>
+                </div>
+                <div class="black-box">
+                    <h2 class="underline-text add-to-cart-btn" style="cursor: pointer;">Mua ngay</h2>
+                </div>
+            </div>
+            <div class="col">
+                <div style="position: relative;"><img class="img-fluid" width="413" height="538" src="assets/img/h7.jpg" style="position: relative;width: 320px;height: 570px;">
+                    <h4 class="position-absolute top-50" style="font-size: 20px;position: absolute;color: var(--bs-light);margin-top: 250px;margin-bottom: 0px;"> Arsenal 25/26 Home Kit</h4>
+                    <h5 style="display:none;">2500000</h5>
+                </div>
+                <div class="black-box">
+                    <h2 class="underline-text add-to-cart-btn" style="cursor: pointer;">Mua ngay</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 style="text-align: center;font-weight: bold;margin-top: 25px;margin-bottom: 25px;">WHAT’S HOT</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-3" style="display: block;">
+                <div><img class="img-fluid me-0 pe-0" width="417" height="547" src="assets/img/h8.jpg" style="width: 320px;height: 540px;"></div>
+                <div class="w-100 content-box" style="background: var(--bs-dark);height: 240px;">
+                    <h1 style="font-size: 34px;color: var(--bs-light);text-align: left;"> YOU GOT THIS</h1>
+                    <h5 style="display:none;">1800000</h5>
+                    <h3 class="underline-text add-to-cart-btn" style="color: var(--bs-light);margin-top: 140px;background: var(--bs-border-color-translucent); cursor: pointer;">Khám phá thêm</h3>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="background: var(--bs-dark);"><img class="img-fluid" width="410" height="537" src="assets/img/h9.jpg" style="width: 320px;height: 540px;"></div>
+                <div class="w-100 pt-0 content-box" style="background: var(--bs-dark);margin-top: 0px;">
+                    <h1 style="font-size: 26px;color: var(--bs-light);text-align: left;">Sống trong Soft Lux</h1>
+                    <p class="mt-0 pt-0 mb-0 pb-0" style="color: var(--bs-light);margin-top: 0px;">Vẻ ngoài thư thái, cảm thấy sang trọng</p>
+                    <h5 style="display:none;">1950000</h5>
+                    <h3 class="underline-text add-to-cart-btn" style="color: var(--bs-light);margin-top: 124px;font-size: 32px;margin-left: 12px; cursor: pointer;">Mua ngay</h3>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="background: var(--bs-dark);"><img class="img-fluid" width="387" height="490" src="assets/img/h10.jpg" style="width: 320px;height: 540px;"></div>
+                <div class="w-100 pt-0 content-box" style="background: var(--bs-dark);margin-top: 0px;">
+                    <h1 style="font-size: 26px;color: var(--bs-light);text-align: center;">Lightblaze</h1>
+                    <p class="mt-0 pt-0 mb-0 pb-0" style="color: var(--bs-light);margin-top: 0px;">Nhanh như ánh sáng - giờ đây với những gam màu mới</p>
+                    <h5 style="display:none;">2100000</h5>
+                    <h3 class="underline-text add-to-cart-btn" style="color: var(--bs-light);margin-top: 100px;font-size: 32px;margin-left: 12px; cursor: pointer;">Mua ngay</h3>
+                </div>
+            </div>
+            <div class="col-3">
+                <div style="background: var(--bs-dark);"><img class="img-fluid" width="380" height="503" src="assets/img/h11.jpg" style="width: 320px;height: 540px;"></div>
+                <div class="w-100 pt-0 content-box" style="background: var(--bs-dark);margin-top: 0px;">
+                    <h1 style="font-size: 26px;color: var(--bs-light);text-align: center;">Dame X</h1>
+                    <p class="mt-0 pt-0 mb-0 pb-0" style="color: var(--bs-light);margin-top: 0px;">It’s Always Dame Time</p>
+                    <h5 style="display:none;">2800000</h5>
+                    <h3 class="underline-text add-to-cart-btn" style="color: var(--bs-light);margin-top: 120px;font-size: 32px;margin-left: 12px; cursor: pointer;">Mua ngay</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background: var(--bs-dark);margin-top: 46px;">
+        <h1 style="text-align: center;color: var(--bs-light);margin: 0px 0px 8px;margin-top: 0px;padding-top: 20px;">CỬA HÀNG THỂ THAO ADIDAS – HIỆU NĂNG, <br>PHONG CÁCH & ĐỔI MỚI TỪ NĂM 1949</h1>
+        <p style="color: var(--bs-light);font-size: 23px;margin-top: 0px;padding-top: 12px;">Thể thao nâng cao sức khoẻ. Giúp bạn luôn tĩnh tâm. Kết nối chúng ta.Thông qua thể thao, chúng ta có sức <br>mạnh để thay đổi cuộc sống—bằng những câu chuyện về các vận động viên truyền cảm hứng, công nghệ đột <br>phá và bằng cách giúp bạn đứng lên và vận động.<br>Tìm kiếm trang phục thể thao hiệu suất cao được ứng dụng công nghệ tiên tiến nhất để giúp bạn bứt phá giới hạn. Dù bạn là một runner, cầu thủ bóng rổ, cầu thủ bóng đá hay đơn giản chỉ là người yêu thích vận động, cửa hàng thể thao của chúng tôi chính là nơi dành cho bạn. Chúng tôi giúp bạn tập luyện chăm chỉ hơn, chạy nhanh hơn và tiến xa hơn với những sản phẩm luôn đồng hành cùng từng chuyển động và mục tiêu của bạn.<br>Khám phá cửa hàng trực tuyến của adidas để cập nhật những bộ sưu tập mới nhất, nơi công nghệ tiên tiến hòa quyện cùng phong cách. Cửa hàng thể thao adidas mang đến trang phục hiệu năng cao cho mọi cấp độ—dù bạn là vận động viên chuyên nghiệp, người yêu thể thao hay chỉ mới bắt đầu hành trình tập luyện. Với cửa hàng trực tuyến của chúng tôi, bạn có thể tiếp cận những trang bị mới nhất, được thiết kế để chuyển động, dù bạn ở bất kỳ đâu.<br>Cửa hàng thể thao adidas không chỉ là nơi mua sắm—đây còn là không gian dành cho những người sáng tạo <br>muốn nâng tầm cuộc chơi và định nghĩa lại giới hạn của bản thân. Tại adidas, chúng tôi hợp tác với những tên tuổi hàng đầu trong ngành để cùng sáng tạo, đảm bảo từng món đồ không chỉ hỗ trợ vận động mà còn thể hiện cá tính và phong cách sống năng động. Dù môn thể thao của bạn là gì, cửa hàng thể thao adidas luôn sẵn sàng đồng hành, giúp bạn tiến từng bước vững chắc trên hành trình chinh phục đỉnh cao.<br><br></p><img style="text-align: center;width: 258px;height: 180px;padding-left: 0px;margin-right: 0px;margin-left: 624px;margin-bottom: 25px;" width="258" height="180" src="assets/img/logo6.jpg">
+        <div class="w-100">
+            <h1 class="pt-0 pb-0" style="color: var(--bs-light);background: var(--bs-info);">TRỞ THÀNH HỘI VIÊN & HƯỞNG ƯU ĐÃI 15%<button class="btn btn-primary" type="button" style="width: 265px;height: 54px;margin: -1px;margin-right: 0px;margin-left: 55px;font-size: 22px;color: var(--bs-dark);background: var(--bs-light);margin-bottom: 3px;">ĐĂNG KÝ MIỄN PHÍ  <i class="fas fa-long-arrow-alt-right" style="font-size: 20px;"></i></button></h1>
+        </div>
+        <footer class="mt-0 pt-0" style="background: var(--bs-dark);margin-top: 0px;margin-bottom: 18px;height: 275px;padding-top: 0px;padding-bottom: 0px;">
+            <div class="row">
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">SẢN PHẨM</h4>
+                    <p style="color: var(--bs-light);">Giày<br>Quần áo<br>Phụ kiện<br>Hàng Mới Về<br>Release Dates<br>Top Sellers<br>Member exclusives<br>Outlet</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">THỂ THAO</h4>
+                    <p style="color: var(--bs-light);">Chạy<br>Đánh gôn<br>Gym & Training<br>Bóng đá<br>Bóng Rổ<br>Quần vợt<br>Ngoai troi<br>Bơi lội<br>Motorsport</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">BỘ SƯU TẬP</h4>
+                    <p style="color: var(--bs-light);">Pharrell Williams<br>Ultra Boost<br>Pureboost<br>Predator<br>Superstar<br>Stan Smith<br>NMD<br>Adicolor</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">THÔNG TIN VỀ CÔNG TY</h4>
+                    <p style="color: var(--bs-light);">Giới Thiệu Về Chúng Tôi<br>Cơ Hội Nghề Nghiệp<br>Tin tức<br>Adidas stories</p>
+                </div>
+                <div class="col">
+                    <h4 style="color: var(--bs-light);">HỖ TRỢ</h4>
+                    <p style="color: var(--bs-light);">Trợ Giúp<br>Công cụ tìm kiếm cửa hàng<br>Biểu Đồ Kích Cỡ<br>Thanh toán<br>Giao hàng<br>Trả Hàng & Hoàn Tiền<br>khuyến mãi<br>Trợ Giúp Dịch Vụ Khách Hàng</p>
+                </div>
+            </div>
+            <div style="background: var(--bs-dark);">
+                <h1 style="background: var(--bs-dark);color: var(--bs-light);text-align: center;">THEO DÕI CHÚNG TÔI<br><br><i class="fab fa-facebook-square" style="width: 164px;font-size: 70px;"></i><i class="fab fa-instagram" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitter" style="width: 164px;font-size: 70px;"></i><i class="fab fa-twitch" style="width: 164px;font-size: 70px;"></i></h1>
+            </div>
+        </footer>
+    </div>
+        <!-- Modal và Scripts -->
+    <!-- ===== BẮT ĐẦU MODAL XÁC NHẬN THÊM VÀO GIỎ HÀNG ===== -->
+<div class="modal fade" id="addedToCartModal" tabindex="-1" aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addedToCartModalLabel"><i class="fas fa-check-circle text-success me-2"></i> Đã thêm vào giỏ hàng!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center">
+              <img id="modal-product-image" src="" alt="Sản phẩm" style="width: 100px; height: 100px; object-fit: cover; margin-right: 15px; border-radius: 8px;">
+              <div>
+                  <h6 id="modal-product-name" style="font-size: 1.1rem; font-weight: bold;">Tên sản phẩm</h6>
+                  <p id="modal-product-price" class="mb-0" style="font-size: 1rem; color: #555;">Giá</p>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+          <a href="Cart.html" class="btn btn-dark">Xem giỏ hàng</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== KẾT THÚC MODAL ===== -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/product-data.js"></script>
+</body>
+
+</html>
