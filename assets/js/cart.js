@@ -1,40 +1,45 @@
 // ==========================================================
 // ==      ADIDAS WEBSITE - CART JAVASCRIPT (FINAL)        ==
 // ==========================================================
-// Phiên bản này đã bao gồm chức năng tìm kiếm và các bản vá lỗi.
+// Phiên bản này bao gồm tất cả chức năng: Giỏ hàng, Modal, Tìm kiếm, Thanh toán...
 
+// Biến này được khai báo MỘT LẦN DUY NHẤT ở đây.
 let addedToCartModal;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Chỉ khởi tạo modal nếu phần tử tồn tại
     const modalElement = document.getElementById('addedToCartModal');
     if (modalElement) {
         addedToCartModal = new bootstrap.Modal(modalElement);
     }
     
+    // Luôn cập nhật icon giỏ hàng khi tải trang
     updateCartIcon();
 
-    // ===== CODE XỬ LÝ FORM TÌM KIẾM Ở HEADER =====
-    const allSearchForms = document.querySelectorAll('form');
-    allSearchForms.forEach(form => {
-        const searchInput = form.querySelector('input[type="search"]');
-        if (searchInput) {
-            form.addEventListener('submit', (event) => {
-                event.preventDefault(); 
-                const query = searchInput.value.trim();
-                if (query) {
-                    window.location.href = `search.html?query=${encodeURIComponent(query)}`;
-                }
-            });
-        }
-    });
-    // ===========================================
+    // Xử lý Form Tìm kiếm ở Header
+    const searchForm = document.getElementById('header-search-form');
+    if (searchForm) {
+        const searchInput = searchForm.querySelector('input[type="search"]');
+        searchForm.addEventListener('submit', (event) => {
+            event.preventDefault(); 
+            const query = searchInput.value.trim();
+            if (query) {
+                // Sử dụng đường dẫn tương đối để hoạt động trên mọi host
+                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+            }
+        });
+    }
 
     // Gán sự kiện cho các nút "Thêm vào giỏ" có sẵn trên trang
     reinitializeCartButtons();
 
-    // Các hàm gọi hiển thị tương ứng với từng trang
-    if (window.location.pathname.includes('Cart.html')) displayCart();
-    if (window.location.pathname.includes('ThanhToan.html')) setupCheckoutPageOldUI();
+    // Gọi các hàm hiển thị tương ứng với từng trang
+    if (window.location.pathname.endsWith('/Cart.html') || window.location.pathname.endsWith('/Cart')) {
+        displayCart();
+    }
+    if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) {
+        setupCheckoutPageOldUI();
+    }
 });
 
 /**
@@ -58,10 +63,8 @@ function reinitializeCartButtons() {
  * @param {Event} event - Sự kiện click.
  */
 function handleAddToCartClick(event) {
-    // Tìm container cha chứa thông tin sản phẩm
     const productContainer = event.target.closest('.col, .col-3, .col-4, .col-md-3, .card');
     if (productContainer) {
-        // Lấy thông tin một cách linh hoạt
         const productNameElement = productContainer.querySelector('h1, h4, h5, p, .card-title');
         const productPriceElement = productContainer.querySelector('h4, h5');
         const productImageElement = productContainer.querySelector('img');
@@ -69,7 +72,7 @@ function handleAddToCartClick(event) {
         if (productNameElement && productPriceElement && productImageElement) {
             const productName = productNameElement.innerText.split('\n')[0].trim();
             const productPriceText = productPriceElement.innerText;
-            const productPrice = parseFloat(productPriceText.replace(/\./g, '').replace(/[^0-9]/g, ''))
+            const productPrice = parseFloat(productPriceText.replace(/\./g, '').replace(/[^0-9]/g, ''));
             
             if (isNaN(productPrice)) {
                 alert('Lỗi: Sản phẩm này hiện không có giá.');
@@ -99,13 +102,12 @@ function showAddedToCartModal(product) {
 function addToCart(productData) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProductIndex = cart.findIndex(item => item.name === productData.name);
-
     if (existingProductIndex > -1) {
         cart[existingProductIndex].quantity += 1;
     } else {
+        productData.quantity = 1; // Đảm bảo sản phẩm mới có số lượng là 1
         cart.push(productData);
     }
-    
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartIcon();
     showAddedToCartModal(productData); 
@@ -173,7 +175,6 @@ function removeFromCart(index) {
     updateCartIcon();
 }
 
-
 // ==========================================================
 // ==            CÁC HÀM XỬ LÝ TRANG THANH TOÁN            ==
 // ==========================================================
@@ -215,14 +216,12 @@ function validateFormOldUI() {
     let isValid = true;
     const form = document.getElementById('checkout-form');
     const inputs = form.querySelectorAll('input[required]');
-
     inputs.forEach(input => {
         input.classList.remove('is-invalid');
         const feedback = input.nextElementSibling;
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
         }
-
         if (!input.value.trim()) {
             isValid = false;
             input.classList.add('is-invalid');
@@ -258,7 +257,6 @@ function displayOrderSummaryOldUI() {
     });
     summaryHTML += '<hr>';
     summaryHTML += `<li class="d-flex justify-content-between fw-bold fs-5"><span>Tổng cộng</span><span>${formatPrice(grandTotal)}</span></li></ul>`;
-
     summaryContainer.innerHTML = summaryHTML;
 }
 
@@ -268,7 +266,6 @@ function placeOrder() {
         alert("Giỏ hàng của bạn đang trống!");
         return;
     }
-
     const customerName = (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim();
     const customerEmail = document.getElementById('email').value;
     const customerAddress = document.getElementById('address').value;
@@ -283,5 +280,6 @@ function placeOrder() {
     };
     sessionStorage.setItem('latestOrder', JSON.stringify(orderDetails));
     localStorage.removeItem('cart');
+    // Sử dụng đường dẫn tương đối
     window.location.href = 'OrderConfirmation.html';
 }
