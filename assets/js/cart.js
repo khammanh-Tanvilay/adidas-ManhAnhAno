@@ -1,22 +1,16 @@
 // ==========================================================
 // ==      ADIDAS WEBSITE - CART JAVASCRIPT (FINAL)        ==
 // ==========================================================
-// Phiên bản này bao gồm tất cả chức năng: Giỏ hàng, Modal, Tìm kiếm, Thanh toán...
-
-// Biến này được khai báo MỘT LẦN DUY NHẤT ở đây.
 let addedToCartModal;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Chỉ khởi tạo modal nếu phần tử tồn tại
     const modalElement = document.getElementById('addedToCartModal');
     if (modalElement) {
         addedToCartModal = new bootstrap.Modal(modalElement);
     }
     
-    // Luôn cập nhật icon giỏ hàng khi tải trang
     updateCartIcon();
 
-    // Xử lý Form Tìm kiếm ở Header
     const searchForm = document.getElementById('header-search-form');
     if (searchForm) {
         const searchInput = searchForm.querySelector('input[type="search"]');
@@ -24,44 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault(); 
             const query = searchInput.value.trim();
             if (query) {
-                // Sử dụng đường dẫn tương đối để hoạt động trên mọi host
-                window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+                window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
             }
         });
     }
 
-    // Gán sự kiện cho các nút "Thêm vào giỏ" có sẵn trên trang
     reinitializeCartButtons();
 
-    // Gọi các hàm hiển thị tương ứng với từng trang
-    if (window.location.pathname.endsWith('/Cart.html') || window.location.pathname.endsWith('/Cart')) {
-        displayCart();
-    }
-    if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) {
-        setupCheckoutPageOldUI();
-    }
+    if (window.location.pathname.endsWith('/Cart.html') || window.location.pathname.endsWith('/Cart')) displayCart();
+    if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) setupCheckoutPageOldUI();
 });
 
-/**
- * Gán lại sự kiện click cho tất cả các nút .add-to-cart-btn.
- * Cần thiết cho các nút được tạo ra động bằng JS (như trên trang tìm kiếm).
- */
 function reinitializeCartButtons() {
-    const buyButtons = document.querySelectorAll('.add-to-cart-btn');
-    buyButtons.forEach(button => {
-        // Thay thế nút bằng một bản sao để xóa các event listener cũ
+    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
-        
-        // Gán sự kiện mới
         newButton.addEventListener('click', handleAddToCartClick);
     });
 }
 
-/**
- * Hàm xử lý logic khi một nút "Thêm vào giỏ" được nhấn.
- * @param {Event} event - Sự kiện click.
- */
 function handleAddToCartClick(event) {
     const productContainer = event.target.closest('.col, .col-3, .col-4, .col-md-3, .card');
     if (productContainer) {
@@ -78,17 +53,11 @@ function handleAddToCartClick(event) {
                 alert('Lỗi: Sản phẩm này hiện không có giá.');
                 return;
             }
-
             const product = { name: productName, price: productPrice, image: productImageElement.src, quantity: 1 };
             addToCart(product);
         }
     }
 }
-
-
-// ==========================================================
-// ==               CÁC HÀM XỬ LÝ GIỎ HÀNG                 ==
-// ==========================================================
 
 function showAddedToCartModal(product) {
     if (!addedToCartModal) return;
@@ -105,7 +74,7 @@ function addToCart(productData) {
     if (existingProductIndex > -1) {
         cart[existingProductIndex].quantity += 1;
     } else {
-        productData.quantity = 1; // Đảm bảo sản phẩm mới có số lượng là 1
+        productData.quantity = 1;
         cart.push(productData);
     }
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -144,13 +113,7 @@ function displayCart() {
             grandTotal += itemTotal;
             const cartRow = document.createElement('div');
             cartRow.className = 'row align-items-center mb-3';
-            cartRow.innerHTML = `
-                <div class="col-md-5 d-flex align-items-center"><img src="${item.image}" style="width: 80px; height: 80px; object-fit: cover; margin-right: 15px;"><span>${item.name}</span></div>
-                <div class="col-md-2 text-center">${formatPrice(item.price)}</div>
-                <div class="col-md-2 text-center"><input type="number" value="${item.quantity}" min="1" class="form-control" style="width: 80px; margin: 0 auto;" onchange="updateQuantity(${index}, this.value)"></div>
-                <div class="col-md-2 text-center">${formatPrice(itemTotal)}</div>
-                <div class="col-md-1 text-center"><button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})"><i class="fas fa-trash-alt"></i></button></div>
-            `;
+            cartRow.innerHTML = `<div class="col-md-5 d-flex align-items-center"><img src="${item.image}" style="width: 80px; height: 80px; object-fit: cover; margin-right: 15px;"><span>${item.name}</span></div><div class="col-md-2 text-center">${formatPrice(item.price)}</div><div class="col-md-2 text-center"><input type="number" value="${item.quantity}" min="1" class="form-control" style="width: 80px; margin: 0 auto;" onchange="updateQuantity(${index}, this.value)"></div><div class="col-md-2 text-center">${formatPrice(itemTotal)}</div><div class="col-md-1 text-center"><button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})"><i class="fas fa-trash-alt"></i></button></div>`;
             itemsContainer.appendChild(cartRow);
         });
         totalPriceContainer.innerHTML = `<strong>Tổng cộng: ${formatPrice(grandTotal)}</strong>`;
@@ -174,10 +137,6 @@ function removeFromCart(index) {
     displayCart();
     updateCartIcon();
 }
-
-// ==========================================================
-// ==            CÁC HÀM XỬ LÝ TRANG THANH TOÁN            ==
-// ==========================================================
 
 function setupCheckoutPageOldUI() {
     displayOrderSummaryOldUI();
@@ -280,6 +239,5 @@ function placeOrder() {
     };
     sessionStorage.setItem('latestOrder', JSON.stringify(orderDetails));
     localStorage.removeItem('cart');
-    // Sử dụng đường dẫn tương đối
-    window.location.href = 'OrderConfirmation.html';
+    window.location.href = '/OrderConfirmation.html';
 }
