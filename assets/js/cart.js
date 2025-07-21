@@ -1,7 +1,7 @@
 // ==========================================================
 // ==      ADIDAS WEBSITE - CART JAVASCRIPT (FINAL)        ==
 // ==========================================================
-
+let addedToCartModal;
 
 document.addEventListener('DOMContentLoaded', () => {
     const modalElement = document.getElementById('addedToCartModal');
@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     reinitializeCartButtons();
 
-    if (window.location.pathname.endsWith('/cart.html') || window.location.pathname.endsWith('/cart'))    if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) setupCheckoutPageOldUI();
+    if (window.location.pathname.endsWith('/Cart.html') || window.location.pathname.endsWith('/Cart')) displayCart();
+    if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) setupCheckoutPageOldUI();
 });
 
 function reinitializeCartButtons() {
