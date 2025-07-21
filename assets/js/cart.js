@@ -1,7 +1,7 @@
 // ==========================================================
 // ==      ADIDAS WEBSITE - CART JAVASCRIPT (FINAL)        ==
 // ==========================================================
-let addedToCartModal;
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const modalElement = document.getElementById('addedToCartModal');
