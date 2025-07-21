@@ -50,3 +50,39 @@ body {
 }
 
 /* --- End Sticky Header Fix --- */
+
+/* --- Responsive Adjustments for Mobile --- */
+
+/* Áp dụng cho màn hình có chiều rộng nhỏ hơn 768px */
+@media (max-width: 767.98px) {
+    
+  /* Thu nhỏ logo và form trong header trên mobile */
+  .navbar-brand img, nav img {
+      height: 80px !important; /* Thu nhỏ logo */
+  }
+
+  nav form .form-control {
+      width: 120px !important; /* Thu nhỏ ô tìm kiếm */
+  }
+  
+  nav form .fas {
+      font-size: 28px !important; /* Thu nhỏ các icon */
+  }
+
+  /* Thu nhỏ các font chữ quá lớn ở các trang khác */
+  h1, .h1 {
+      font-size: 2rem; /* Giảm kích thước h1 */
+  }
+
+  /* Giảm font-size của các mục trong trang Contact cũ */
+  body[style*="width: 1200px"] h1 {
+      font-size: 1.5rem !important;
+  }
+   body[style*="width: 1200px"] p, body[style*="width: 1200px"] label {
+      font-size: 1rem !important;
+  }
+  body[style*="width: 1200px"] input {
+      font-size: 1rem !important;
+      height: auto !important;
+  }
+}
