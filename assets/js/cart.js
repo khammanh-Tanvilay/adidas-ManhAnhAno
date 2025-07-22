@@ -169,14 +169,16 @@ function validateFormOldUI() {
     let isValid = true;
     const form = document.getElementById('checkout-form');
     const inputs = form.querySelectorAll('input[required]');
+    console.log(inputs);
     inputs.forEach(input => {
         input.classList.remove('is-invalid');
+        console.log(input.classList,input.value);
         const feedback = input.nextElementSibling;
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
             
         }
-        if (input.value.trim()) {
+        if (!input.value.trim()) {
             isValid = false;
             console.log("check",isValid);
             input.classList.add('is-invalid');
