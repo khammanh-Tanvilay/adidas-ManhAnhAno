@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     displayCart();
     updateCartIcon();
-
+    displayOrderSummaryOldUI();
     const searchForm = document.getElementById('header-search-form');
     if (searchForm) {
         const searchInput = searchForm.querySelector('input[type="search"]');
