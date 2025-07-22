@@ -154,15 +154,9 @@ function setupCheckoutPageOldUI() {
         });
     });
 
-    checkoutForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        if (validateFormOldUI()) {
-            placeOrder();
-        } else {
-            alert('Vui lòng kiểm tra lại các thông tin bắt buộc còn thiếu hoặc không hợp lệ.');
-        }
-    });
+    
 }
+
 
 function toggleCreditCardValidation(isRequired) {
     const cardFields = document.querySelectorAll('#credit-card-form input');
@@ -193,6 +187,15 @@ function validateFormOldUI() {
     });
     return isValid;
 }
+const checkoutForm3 = document.getElementById('checkout-form')
+checkoutForm3.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (validateFormOldUI()) {
+        placeOrder();
+    } else {
+        alert('Vui lòng kiểm tra lại các thông tin bắt buộc còn thiếu hoặc không hợp lệ.');
+    }
+})
 
 function displayOrderSummaryOldUI() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
