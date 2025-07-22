@@ -176,6 +176,7 @@ function validateFormOldUI() {
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
         }
+        console.log(input.value);
         if (input.value == '') {
             isValid = false;
             input.classList.add('is-invalid');
