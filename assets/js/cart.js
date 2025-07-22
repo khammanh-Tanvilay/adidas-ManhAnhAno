@@ -191,7 +191,7 @@ const checkoutForm3 = document.getElementById('checkout-form')
 console.log(validateFormOldUI());
 checkoutForm3.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (!validateFormOldUI()) {
+    if (validateFormOldUI()) {
         placeOrder();
     } else {
         alert('Vui lòng kiểm tra lại các thông tin bắt buộc còn thiếu hoặc không hợp lệ.');
