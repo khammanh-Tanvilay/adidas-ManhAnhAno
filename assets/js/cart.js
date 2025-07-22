@@ -192,10 +192,12 @@ function validateFormOldUI() {
     });
     return isValid;
 }
+const checkoutForm = document.getElementById('checkout-form');
+
 const checkoutFormS = document.getElementById('checkout-form')
 checkoutFormS.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (validateFormOldUI()) {
+    if (!validateFormOldUI()) {
         placeOrder();
     } else {
         alert('Vui lòng kiểm tra lại các thông tin bắt buộc còn thiếu hoặc không hợp lệ.');
