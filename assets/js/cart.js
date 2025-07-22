@@ -177,7 +177,7 @@ function validateFormOldUI() {
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
         }
-        console.log(isEmpty(input.value));
+        console.log("update",isEmpty(input.value));
         if (isEmpty(input.value)) {
             console.log(`tên: ${input.classList}`,input.value);
             isValid = false;
