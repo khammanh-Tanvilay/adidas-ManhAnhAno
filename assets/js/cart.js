@@ -242,3 +242,5 @@ function placeOrder() {
     localStorage.removeItem('cart');
     window.location.href = '/OrderConfirmation.html';
 }
+displayCart();
+
