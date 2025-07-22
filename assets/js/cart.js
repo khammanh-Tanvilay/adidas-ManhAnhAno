@@ -170,6 +170,7 @@ function validateFormOldUI() {
     const form = document.getElementById('checkout-form');
     const inputs = form.querySelectorAll('input[required]');
     console.log(inputs);
+    const isEmpty = str => !str.trim().length;
     inputs.forEach(input => {
         input.classList.remove('is-invalid');
         const feedback = input.nextElementSibling;
@@ -177,7 +178,7 @@ function validateFormOldUI() {
             feedback.style.display = 'none';
         }
         
-        if (input.value === '') {
+        if (isEmpty(input.value) < 0) {
             console.log(`tên: ${input.classList}`,input.value);
             isValid = false;
             input.classList.add('is-invalid');
