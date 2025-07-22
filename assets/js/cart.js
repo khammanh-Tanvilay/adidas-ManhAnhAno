@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalElement) {
         addedToCartModal = new bootstrap.Modal(modalElement);
     }
-    
+    displayCart();
     updateCartIcon();
 
     const searchForm = document.getElementById('header-search-form');
@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     reinitializeCartButtons();
-
     if (window.location.pathname.endsWith('/Cart.html') || window.location.pathname.endsWith('/Cart')) displayCart();
     if (window.location.pathname.endsWith('/ThanhToan.html') || window.location.pathname.endsWith('/ThanhToan')) setupCheckoutPageOldUI();
 });
