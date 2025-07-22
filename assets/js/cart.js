@@ -94,6 +94,7 @@ function updateCartIcon() {
 
 function displayCart() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log(cart);
     const itemsContainer = document.getElementById('cart-items-container');
     const summarySection = document.getElementById('cart-summary-section');
     const totalPriceContainer = document.getElementById('total-price-container');
