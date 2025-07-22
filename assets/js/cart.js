@@ -178,7 +178,7 @@ function validateFormOldUI() {
             feedback.style.display = 'none';
         }
         
-        if (isEmpty(input.value) < 0) {
+        if (isEmpty(input.value)) {
             console.log(`tên: ${input.classList}`,input.value);
             isValid = false;
             input.classList.add('is-invalid');
