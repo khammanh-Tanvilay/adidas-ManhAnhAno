@@ -191,7 +191,6 @@ function validateFormOldUI() {
     return isValid;
 }
 const checkoutForm3 = document.getElementById('checkout-form')
-console.log(validateFormOldUI());
 checkoutForm3.addEventListener('submit', (event) => {
     event.preventDefault();
     if (validateFormOldUI()) {
