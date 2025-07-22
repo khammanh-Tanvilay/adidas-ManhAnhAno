@@ -176,7 +176,7 @@ function validateFormOldUI() {
             feedback.style.display = 'none';
             
         }
-        if (!input.value.trim()) {
+        if (input.value.trim()) {
             isValid = false;
             console.log("check",isValid);
             input.classList.add('is-invalid');
