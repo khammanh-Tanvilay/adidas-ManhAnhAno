@@ -172,12 +172,11 @@ function validateFormOldUI() {
     console.log(inputs);
     inputs.forEach(input => {
         input.classList.remove('is-invalid');
-        console.log(input.classList,input.value);
         const feedback = input.nextElementSibling;
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
         }
-        if (false) {
+        if (input.value == '') {
             isValid = false;
             input.classList.add('is-invalid');
             if (feedback) feedback.style.display = 'block';
@@ -189,8 +188,8 @@ function validateFormOldUI() {
     });
     return isValid;
 }
-const checkoutForm3 = document.getElementById('checkout-form')
-checkoutForm3.addEventListener('submit', (event) => {
+const checkoutFormS = document.getElementById('checkout-form')
+checkoutFormS.addEventListener('submit', (event) => {
     event.preventDefault();
     if (validateFormOldUI()) {
         placeOrder();
