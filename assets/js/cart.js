@@ -176,12 +176,14 @@ function validateFormOldUI() {
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
         }
-        console.log(`tên: ${input.classList}`,input.value);
+        
         if (input.value === '') {
+            console.log(`tên: ${input.classList}`,input.value);
             isValid = false;
             input.classList.add('is-invalid');
             if (feedback) feedback.style.display = 'block';
         } else if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+            console.log(`email`);
             isValid = false;
             input.classList.add('is-invalid');
             if (feedback) feedback.style.display = 'block';
