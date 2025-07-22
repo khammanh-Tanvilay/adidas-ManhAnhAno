@@ -176,16 +176,13 @@ function validateFormOldUI() {
         const feedback = input.nextElementSibling;
         if (feedback && feedback.classList.contains('invalid-feedback')) {
             feedback.style.display = 'none';
-            
         }
-        if (!input.value.trim()) {
+        if (false) {
             isValid = false;
-            console.log("check",isValid);
             input.classList.add('is-invalid');
             if (feedback) feedback.style.display = 'block';
         } else if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
             isValid = false;
-            console.log("check3",isValid);
             input.classList.add('is-invalid');
             if (feedback) feedback.style.display = 'block';
         }
